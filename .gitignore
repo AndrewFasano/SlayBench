@@ -26,6 +26,9 @@ __pycache__/
 # macOS
 .DS_Store
 
+# Internal design notes — kept locally, not published
+CRITIQUE.md
+
 # Eval outputs
 eval_results/
 home_template*/

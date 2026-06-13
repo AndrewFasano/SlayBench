@@ -82,7 +82,7 @@ budget-capped incomplete runs.
 ~10×). Bound spend with `--token-limit`.
 
 **Reference results** (token-limited pilot, 3M tokens/sample, 2 seeds): Haiku 4.5
-8 floors/86 decisions (~$0.41/run), Sonnet 4.0 7/85 (~$1.26/run), scripted greedy
+8 floors/86 decisions (\~$0.41/run), Sonnet 4.0 7/85 (\~$1.26/run), scripted greedy
 baseline 11 floors over 150 free decisions — both models beat the baseline
 per-decision (0.093/0.082 vs 0.073 floors/decision), with zero invalid tool calls.
 
