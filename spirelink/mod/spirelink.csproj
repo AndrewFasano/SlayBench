@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <AssemblyName>spirelink</AssemblyName>
+    <RootNamespace>SpireLink</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Deterministic>true</Deterministic>
+    <!-- Directory holding the game's managed assemblies (sts2.dll, GodotSharp.dll, 0Harmony.dll).
+         Overridden by build.sh to the mounted /game path inside the build container. -->
+    <GameLibs Condition="'$(GameLibs)' == ''">/game</GameLibs>
+  </PropertyGroup>
+
+  <!-- Reference the game's already-loaded assemblies. Private=false => we never ship copies;
+       at runtime these bind to the assemblies the game has already loaded (correct type identity). -->
+  <ItemGroup>
+    <Reference Include="sts2">
+      <HintPath>$(GameLibs)/sts2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="GodotSharp">
+      <HintPath>$(GameLibs)/GodotSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameLibs)/0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- System.Text.Json: compile against the NuGet ref, but exclude from output (the game ships it). -->
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="9.0.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+name: offline-tests
+# Protocol contract tests + MCP/Inspect plumbing against the built-in mock.
+# No game, no API key, no secrets.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: protocol contract test (mock)
+        run: uv run --python 3.12 --with mcp python spirelink/bridge/play_test.py
+      - name: MCP end-to-end test (mock)
+        run: uv run --python 3.12 --with mcp python spirelink/bridge/mcp_play_test.py
+      - name: inspect task constructs
+        run: |
+          uv run --python 3.12 --with inspect-ai==0.3.239 --with anthropic --with mcp python - <<'EOF'
+          import sys; sys.path.insert(0, "spirelink/bridge")
+          import inspect_task
+          for fn in (inspect_task.slaybench, inspect_task.slaybench_pilot):
+              t = fn(runs=1)
+              assert t.message_limit and t.token_limit and t.score_on_error
+          print("tasks construct OK")
+          EOF

@@ -1,0 +1,19 @@
+[project]
+name = "slaybench"
+version = "1.0.0"
+description = "SlayBench: a Slay the Spire 2 evaluation for AI agents, built on the SpireLink control layer (Inspect AI task + MCP server + line-JSON protocol)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+# Pinned: several behaviors this harness depends on were verified against these
+# exact versions (limit-hit samples still scoring, adaptive-concurrency defaults,
+# react truncation semantics). Re-verify inspect_task.py's design notes when bumping.
+dependencies = [
+    "inspect-ai==0.3.239",
+    "anthropic>=0.79,<1",
+    "mcp>=1.0",
+]
+
+[tool.uv]
+package = false

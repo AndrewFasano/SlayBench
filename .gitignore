@@ -1,0 +1,34 @@
+# --- Large / proprietary / generated: never commit ---
+
+# Isolated test copy of the game (~2 GB) and the user's real-save backups
+sts2-test.app/
+SAVE_BACKUP_*/
+
+# Decompiled Slay the Spire 2 source — proprietary game code, kept locally for reference only
+decomp/
+
+# Isolated game HOME for the test instance (saves, logs, shader cache)
+testhome/
+
+# .NET build outputs
+spirelink/dist/
+spirelink/mod/_out/
+**/bin/
+**/obj/
+*.dll
+*.pdb
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# macOS
+.DS_Store
+
+# Eval outputs
+eval_results/
+home_template*/
+.env
+config.local.sh
+.claude/

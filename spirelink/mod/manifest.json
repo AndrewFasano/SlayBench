@@ -1,0 +1,10 @@
+{
+  "id": "spirelink",
+  "name": "SpireLink",
+  "author": "spirelink",
+  "description": "Text/JSON control interface exposing game state and decisions for AI agents.",
+  "version": "0.1.0",
+  "has_dll": true,
+  "has_pck": false,
+  "affects_gameplay": true
+}
